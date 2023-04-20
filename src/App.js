@@ -1,41 +1,53 @@
-import React, { useState } from "react"
-import "./App.css"
+import React, { Fragment } from "react";
+import { Button, Form, Input } from "antd";
+import "./App.css";
 
-export const App = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [passwordDirty, setPasswordDirty] = useState(false)
-  const [emailDirty, setEmailDirty] = useState(false)
-  const [emailError, setEmailError] = useState("Емейл не может быть пустым")
-  const [passwordError, setPasswordError] = useState(
-    "Пароль не может быть пустым",
-  )
-
-  const blurHandler = (e) => {
-    switch (e.target.name) {
-      case "email":
-        setEmailDirty(true)
-        break
-      case "password":
-        setPasswordDirty(true)
-        break
-    }
-  }
-
+const App = () => {
   return (
-    <div className="App">
-      <form>
+    <Fragment>
+      <Form
+        className="app"
+        name="basic"
+        labelCol={{ span: 12 }}
+        wrapperCol={{ span: 16 }}
+        style={{ maxWidth: 600 }}
+        initialValues={{ remember: true }}
+      >
         <h1>Регистрация</h1>
-        {emailDirty && emailError && (<p style={{ color: "red" }}>{emailError}</p>)}
-        <input onBlur={e => blurHandler(e)} name="email" type="text" placeholder="Enter your email..." />
+        <Form.Item
+          className="app__input"
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: "Поле не должно быть пустое!" }]}
+        >
+          <Input
+            name="email"
+            type="text"
+            placeholder="Enter your email..."
+          />
+        </Form.Item>
 
-        {passwordDirty && passwordError && (<p style={{ color: "red" }}>{passwordError}</p>)}
-        <input onBlur={e => blurHandler(e)} name="password" type="password" placeholder="Enter your password..." />
+        <Form.Item
+          className="app__input"
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: "Поле не должно быть пустое!" }]}
+        >
+          <Input.Password
+            name="password"
+            type="password"
+            placeholder="Enter your password..."
+          />
+        </Form.Item>
 
-        <button type="submit">Registration</button>
-      </form>
-    </div>
-  )
-}
+        <Form.Item wrapperCol={{ offset: 10, span: 16 }}>
+          <Button type="primary" htmlType="submit">
+            Registration
+          </Button>
+        </Form.Item>
+      </Form>
+    </Fragment>
+  );
+};
 
 export default App;

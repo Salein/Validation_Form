@@ -1,0 +1,15 @@
+.app {
+  margin-left: 30%;
+  margin-top: 10%;
+  padding-top: 1px;
+  height: 250px;
+  box-shadow: 0px 0px 5px black;
+  border-radius: 10px;
+  background-color: rgb(222, 245, 245);
+}
+.app__input {
+  margin-right: 25%;
+}
+h1 {
+  text-align: center;
+}
